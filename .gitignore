@@ -1,0 +1,24 @@
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+gen/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Java / Maven / Gradle
+*.class
+*.log
+*.ctxt
+target/
+bin/
+build/
+.gradle/
+
+# Local env / Secrets
+.env
