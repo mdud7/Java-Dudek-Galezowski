@@ -31,10 +31,8 @@ public class Task {
 
     public enum TaskType {
         LOW_PRIORITY,
-        BUG,
-        FEATURE,
-        IMPROVEMENT,
-        TASK
+        MEDIUM_PRIORITY,
+        HIGH_PRIORITY
     }
 
     @Enumerated(EnumType.STRING)
