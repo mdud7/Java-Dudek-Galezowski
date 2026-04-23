@@ -3,7 +3,7 @@ package org.example.projectmanagerapp.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.projectmanagerapp.entity.User;
-import org.example.projectmanagerapp.repository.UserRepository;
+import org.example.projectmanagerapp.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 @Tag(name = "Users", description = "Operacje na uzytkownikach")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -25,7 +25,7 @@ public class UserController {
             description = "Zwraca liste wszystkich uzytkownikow zapisanych w systemie"
     )
     public List<User> getAll() {
-        return userRepository.findAll();
+        return userService.getAll();
     }
 
     @PostMapping
@@ -34,6 +34,6 @@ public class UserController {
             description = "Tworzy nowego uzytkownika na podstawie danych przeslanych w zadaniu"
     )
     public User create(@RequestBody User user) {
-        return userRepository.save(user);
+        return userService.create(user);
     }
 }

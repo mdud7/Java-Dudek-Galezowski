@@ -3,7 +3,7 @@ package org.example.projectmanagerapp.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.projectmanagerapp.entity.Project;
-import org.example.projectmanagerapp.repository.ProjectRepository;
+import org.example.projectmanagerapp.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 @Tag(name = "Projects", description = "Operacje na projektach")
 public class ProjectController{
 
-    private final ProjectRepository projectRepository;
+    private final ProjectService projectService;
 
-    public ProjectController(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
     }
 
     @GetMapping
@@ -25,7 +25,7 @@ public class ProjectController{
             description = "Zwraca liste wszystkich projektow zapisanych w systemie"
     )
     public List<Project> getAll() {
-        return projectRepository.findAll();
+        return projectService.getAll();
     }
 
     @PostMapping
@@ -34,6 +34,6 @@ public class ProjectController{
             description = "Tworzy nowy projekt na podstawie danych przeslanych w zadaniu"
     )
     public Project create(@RequestBody Project project) {
-        return projectRepository.save(project);
+        return projectService.create(project);
     }
 }
