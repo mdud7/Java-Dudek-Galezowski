@@ -1,5 +1,6 @@
 package org.example.projectmanagerapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "users")
 
 public class User{
@@ -23,5 +25,6 @@ public class User{
     private String username;
 
     @ManyToMany(mappedBy = "users")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<Project> projects = new HashSet<>();
 }
