@@ -35,6 +35,19 @@ public class TaskController {
         return taskService.getAll();
     }
 
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Pobierz zadanie po ID",
+            description = "Zwraca dane zadania o wskazanym identyfikatorze"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Zadanie zostalo pobrane poprawnie"),
+            @ApiResponse(responseCode = "404", description = "Nie znaleziono zadania o podanym identyfikatorze")
+    })
+    public Task getById(@Parameter(description = "Identyfikator zadania", required = true) @PathVariable Long id) {
+        return taskService.getById(id);
+    }
+
     @PostMapping
     @Operation(
             summary = "Utworz zadanie",

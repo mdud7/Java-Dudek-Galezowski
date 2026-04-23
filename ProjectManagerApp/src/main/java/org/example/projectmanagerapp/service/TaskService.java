@@ -21,6 +21,11 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    public Task getById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Task not found"));
+    }
+
     public Task create(Task task) {
         return taskRepository.save(task);
     }

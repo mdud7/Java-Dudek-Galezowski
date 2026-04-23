@@ -35,6 +35,19 @@ public class UserController {
         return userService.getAll();
     }
 
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Pobierz uzytkownika po ID",
+            description = "Zwraca dane uzytkownika o wskazanym identyfikatorze"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Uzytkownik zostal pobrany poprawnie"),
+            @ApiResponse(responseCode = "404", description = "Nie znaleziono uzytkownika o podanym identyfikatorze")
+    })
+    public User getById(@Parameter(description = "Identyfikator uzytkownika", required = true) @PathVariable Long id) {
+        return userService.getById(id);
+    }
+
     @PostMapping
     @Operation(
             summary = "Utworz uzytkownika",

@@ -21,6 +21,11 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public Project getById(Long id) {
+        return projectRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
+    }
+
     public Project create(Project project) {
         return projectRepository.save(project);
     }

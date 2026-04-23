@@ -35,6 +35,19 @@ public class ProjectController{
         return projectService.getAll();
     }
 
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Pobierz projekt po ID",
+            description = "Zwraca dane projektu o wskazanym identyfikatorze"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Projekt zostal pobrany poprawnie"),
+            @ApiResponse(responseCode = "404", description = "Nie znaleziono projektu o podanym identyfikatorze")
+    })
+    public Project getById(@Parameter(description = "Identyfikator projektu", required = true) @PathVariable Long id) {
+        return projectService.getById(id);
+    }
+
     @PostMapping
     @Operation(
             summary = "Utworz projekt",
