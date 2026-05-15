@@ -82,13 +82,13 @@ class ProjectServiceTest {
     @Test
     @DisplayName("Should update existing project")
     void testUpdateProject_Success() {
-        when(projectRepository.existsById(1L)).thenReturn(true);
+        when(projectRepository.findById(1L)).thenReturn(Optional.of(testProject));
         when(projectRepository.save(any(Project.class))).thenReturn(testProject);
 
         Project updated = projectService.update(1L, testProject);
 
         assertThat(updated.getId()).isEqualTo(1L);
-        verify(projectRepository).save(testProject);
+        verify(projectRepository).save(any(Project.class));
     }
 
     @Test
