@@ -1,7 +1,8 @@
-package org.example.projectmanagerapp.service;
+package org.example.projectmanagerapp;
 
 import org.example.projectmanagerapp.entity.User;
 import org.example.projectmanagerapp.repository.UserRepository;
+import org.example.projectmanagerapp.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -69,7 +70,8 @@ class UserServiceTest {
         assertThatThrownBy(() -> userService.getById(99L))
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("User not found")
-                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
+                .satisfies(
+                        e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
     }
 
     @Test
@@ -104,7 +106,8 @@ class UserServiceTest {
 
         assertThatThrownBy(() -> userService.update(99L, testUser))
                 .isInstanceOf(ResponseStatusException.class)
-                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
+                .satisfies(
+                        e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
 
         verify(userRepository, never()).save(any(User.class));
     }

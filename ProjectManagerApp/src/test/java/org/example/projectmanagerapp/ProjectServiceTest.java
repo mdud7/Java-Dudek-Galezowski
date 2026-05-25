@@ -1,7 +1,8 @@
-package org.example.projectmanagerapp.service;
+package org.example.projectmanagerapp;
 
 import org.example.projectmanagerapp.entity.Project;
 import org.example.projectmanagerapp.repository.ProjectRepository;
+import org.example.projectmanagerapp.service.ProjectService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,7 +67,8 @@ class ProjectServiceTest {
 
         assertThatThrownBy(() -> projectService.getById(99L))
                 .isInstanceOf(ResponseStatusException.class)
-                .satisfies(e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
+                .satisfies(
+                        e -> assertThat(((ResponseStatusException) e).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND));
     }
 
     @Test
